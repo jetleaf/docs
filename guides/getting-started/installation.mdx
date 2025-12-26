@@ -1,0 +1,111 @@
+---
+title: "Installation"
+description: "How to install JetLeaf manually via `pubspec.yaml` or using the JetLeaf Hapnium web builder (https://build.jetleaf.hapnium.com)."
+mode: "default"
+---
+
+import { Callout } from '@mintlify/components'
+
+# Installation
+
+<Callout type="info" title="Two ways to install JetLeaf">
+  You can install JetLeaf the traditional way by adding it to your `pubspec.yaml`, or use the JetLeaf Hapnium web builder to generate a ready-to-use project with selected packages, preview, and Dockerfile support.
+</Callout>
+
+This section shows two primary ways to add JetLeaf to your project: a manual installation (adding the package and optional development tools to an existing Dart project), and a UI-driven installation using the JetLeaf Hapnium builder that generates a complete, pre-configured project (including an optional Dockerfile and devtool integration).
+
+What you'll find here:
+
+- Prerequisites and minimum Dart SDK requirements
+- How to add `jetleaf` to `pubspec.yaml` and import it
+- How to enable `jetleaf_devtool` for local development
+- When to prefer the Hapnium builder vs manual installation
+
+**Recommended:** Use the Hapnium builder for new projects (fast, configurable, production-ready outputs); use manual installation to add JetLeaf to existing projects or when you prefer full control over dependencies.
+
+---
+
+## 1) Manual installation (pub.dev)
+
+### Add dependency
+
+Edit your project's `pubspec.yaml` and add JetLeaf as a dependency:
+
+```yaml
+dependencies:
+  jetleaf: ^<latest-version>
+```
+
+> Tip: Replace `<latest-version>` with the version you want or use `^latest` after checking the package page on pub.dev.
+
+### Minimum Dart SDK
+
+Check the JetLeaf package's `pubspec` on pub.dev for the required SDK constraint and set your project's `environment` accordingly. Example:
+
+```yaml
+environment:
+  sdk: '>=3.0.0 <4.0.0' # Example — use the SDK range required by the JetLeaf version you choose
+```
+
+If you need to confirm compatibility, open the JetLeaf package page (pub.dev) and review the `SDK` entry in the package details.
+
+### Import in code
+
+```dart
+import 'package:jetleaf/jetleaf.dart';
+```
+
+### Using `jetleaf_devtool` (optional but recommended for development)
+
+If you want the developer tooling (commands such as `jl proxy`, `jl build`, `jl dev`), activate the CLI:
+
+- Global activation:
+
+```bash
+dart pub global activate jetleaf_devtool
+```
+
+- Or add as a dev dependency (so it is recorded in your project):
+
+```yaml
+dev_dependencies:
+  jetleaf_devtool: ^<latest-version>
+```
+
+After activation you can run development commands (examples):
+
+```bash
+# Start a local dev server
+jl dev
+
+# Build for production
+jl build
+
+# Start proxy
+jl proxy
+```
+
+<Callout type="note" title="Devtool note">
+  CLI must be activated (globally or available in project dev deps) to access dev commands. If you use the Hapnium builder and include the devtool, remember to activate the CLI locally to run the generated commands.
+</Callout>
+
+---
+
+## 2) Install using JetLeaf Hapnium (UI-based)
+
+Visit: https://build.jetleaf.hapnium.com
+
+The Hapnium builder gives you a polished, visual way to configure your JetLeaf project:
+
+- Select the JetLeaf packages you want to include
+- Preview generated files in an IDE-style view
+- Configure project name, description and metadata
+- Optionally include `jetleaf_devtool` and see the CLI commands included
+- Generate a `Dockerfile` and recommended production settings
+- Download the ready-made project or push to a repo
+
+<Callout type="success" title="Why use the builder?">
+  The Hapnium builder speeds up project setup and reduces manual configuration mistakes — especially useful if you want a ready Docker configuration and a pre-configured dev toolchain.
+</Callout>
+
+> Note: If you include the devtool via the Hapnium UI, you still need to activate the `jetleaf_devtool` CLI locally (`dart pub global activate jetleaf_devtool`) to run commands like `jl dev`.
