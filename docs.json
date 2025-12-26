@@ -10,6 +10,12 @@
   "favicon": "/images/3-removebg-preview8.svg",
   "navigation": {
     "global": {
+      "dropdowns": [
+        {
+          "dropdown": "Getting Started",
+          "href": ""
+        }
+      ],
       "anchors": [
         {
           "anchor": "Documentation",
