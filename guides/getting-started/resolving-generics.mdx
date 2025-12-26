@@ -1,17 +1,15 @@
 ---
 title: "Resolving Generic Types"
-description: "How to use the `@Generic` annotation to fix Dart reflection issues where generic types resolve to `_ClassMirror` instead of usable `Type` objects — enabling JetLeaf to perform instance creation, method invocation, and reliable dependency injection."
+description: "How to use the `@Generic` annotation to fix Dart type erasure"
 tag: "generic"
-keywords: ["generic"]
+keywords: ["Generic"]
 ---
 
-# @Generic
-
-<Callout type="warning" title="The hasReflectedType Problem">
-  In Dart's reflection system, generic types return `false` for `hasReflectedType`, forcing JetLeaf to use the fallback `mirror.runtimeType` which returns `_ClassMirror`. `_ClassMirror` cannot be used for instance creation or method invocation. The `@Generic` annotation provides the actual `Type` object to avoid this problematic fallback.
-</Callout>
-
 The `@Generic` annotation solves Dart reflection issues where generic types return `_ClassMirror` instead of usable `Type` objects, preventing JetLeaf from creating instances or invoking methods reflectively. This occurs because Dart's type erasure causes generic type parameters to be lost at runtime, and when JetLeaf tries to reflect on classes like `List<String>`, it receives `_ClassMirror` instead of a proper `Type` that can be used for instance creation or method invocation. The annotation provides explicit type metadata that JetLeaf can read at compile time and use at runtime, ensuring that reflection operations work correctly even with complex generic types.
+
+<warning>
+  In Dart's reflection system, generic types return `false` for `hasReflectedType`, forcing JetLeaf to use the fallback `mirror.runtimeType` which returns `_ClassMirror`. `_ClassMirror` cannot be used for instance creation or method invocation. The `@Generic` annotation provides the actual `Type` object to avoid this problematic fallback.
+</warning>
 
 ## The Problem: `_ClassMirror` Instead of Type
 
@@ -134,6 +132,6 @@ class UserFactory implements Factory<User> {
 }
 ```
 
-<Callout type="info" title="Always Annotate Generic Classes">
+<info>
   Always add `@Generic` to any class with type parameters (`<T>`, `<K, V>`, etc.) that JetLeaf needs to work with reflectively. Without it, you'll encounter `_ClassMirror` errors and JetLeaf won't be able to create instances or invoke methods on your generic types.
-</Callout>
+</info>

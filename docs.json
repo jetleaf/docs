@@ -30,8 +30,8 @@
           {
             "group": "Getting started",
             "pages": [
-              "guides/getting-started/installation",
               "index",
+              "guides/getting-started/installation",
               "quickstart",
               "development",
               "guides/getting-started/resolving-generics"
