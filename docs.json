@@ -1,16 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Jetleaf Docs",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": {
-    "light": "/favicon.svg",
-    "dark": "/favicon.svg"
-  },
+  "favicon": "/images/3-removebg-preview8.svg",
   "navigation": {
     "tabs": [
       {
@@ -121,5 +118,6 @@
       "github": "https://github.com/mintlify",
       "linkedin": "https://linkedin.com/company/mintlify"
     }
-  }
+  },
+  "description": "The Dart Framework for Server-Side Developers"
 }
